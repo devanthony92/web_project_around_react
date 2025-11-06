@@ -1,6 +1,7 @@
-import editButton from "../../assets/edit__button.svg";
+import editButton from "../../../assets/images/edit__button.svg";
 
-export default function ProfileInfo() {
+export default function ProfileInfo(props) {
+	const { onOpen } = props;
 	const user = {
 		name: "Jacques Cousteau",
 		profession: "Explorador",
@@ -12,7 +13,12 @@ export default function ProfileInfo() {
 				<h2 className="main__profile-name" id="profileName">
 					{user.name}
 				</h2>
-				<button className="main__profile-edit" id="editButton">
+				<button
+					aria-label="Edit Profile"
+					className="main__profile-edit"
+					id="editButton"
+					onClick={onOpen}
+				>
 					<img src={editButton} alt="edit button" />
 				</button>
 			</div>

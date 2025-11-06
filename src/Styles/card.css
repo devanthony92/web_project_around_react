@@ -1,0 +1,106 @@
+.card {
+	background-color: #fff;
+	width: 280px;
+	height: 360px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.card__img {
+	background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-opaco */
+	width: 280px;
+	min-height: 280px;
+	height: 280px;
+}
+
+.card__description {
+	margin: 0;
+	color: #000;
+	display: grid;
+	grid-template-columns: 6fr 1fr;
+	grid-template-rows: 1fr;
+	justify-items: start;
+	align-items: center;
+}
+
+.card__name {
+	margin: 24px 0 24px 24px;
+	max-width: 220px;
+	font-family: Inter;
+	font-size: 1.5rem;
+	font-weight: 900;
+	line-height: 1.2;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.card__like {
+	width: 24px;
+	height: 24px;
+	display: flex;
+	justify-content: center;
+	background-color: #fff;
+	cursor: pointer;
+	background-image: url("../assets/images/like.svg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+	border: none;
+	opacity: 0.5;
+	transition: 0.3s;
+}
+
+.card__like:hover {
+	transform: scale(1.3);
+}
+
+.card__like_active {
+	opacity: 1;
+	background-image: url("../assets/images/like_active.svg");
+}
+
+.card__delete {
+	position: relative;
+	width: 19px;
+	height: 18px;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+	background-image: url("../assets/images/Trash.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100%;
+	top: -270px;
+	left: 245px;
+	transition: 0.3s;
+}
+
+.card__delete:hover {
+	transform: scale(1.3);
+}
+
+.cards__list {
+	margin: 50px 0 0 0;
+	max-width: 880px;
+	display: grid;
+	grid-template-columns: repeat(3, 280px);
+	grid-template-rows: 1fr 1fr;
+	row-gap: 20px;
+	column-gap: 17px;
+	justify-content: center;
+}
+
+@media screen and (min-width: 580px) and (max-width: 880px) {
+	.cards__list {
+		grid-template-columns: repeat(2, 280px);
+		grid-template-rows: repeat(3, 1fr);
+	}
+}
+
+@media screen and (max-width: 579px) {
+	.cards__list {
+		grid-template-columns: repeat(1, 280px);
+		grid-template-rows: repeat(6, 1fr);
+	}
+}

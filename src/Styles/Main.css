@@ -1,5 +1,10 @@
 .main {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.main__container {
+	display: flex;
 	max-height: 140px;
 	align-items: center;
 	width: 95%;
@@ -74,6 +79,9 @@
 	background-color: #000;
 	border: 1px solid #ffffff;
 	cursor: pointer;
+}
+.main__profile-edit:hover {
+	opacity: 60%;
 }
 
 .main__profile-profesion {

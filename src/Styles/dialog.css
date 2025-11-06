@@ -1,0 +1,74 @@
+.dialog__confirm {
+	width: 430px;
+	height: 180px;
+}
+.dialog__confirm_title {
+	font-family: Inter;
+	font-weight: 900;
+	font-size: 1.3rem;
+	color: #000;
+	line-height: 1.5;
+	letter-spacing: 0%;
+	margin: 0 0 30px;
+}
+
+.dialog__perfilPhotoEdit {
+	width: 430px;
+	height: 270px;
+}
+
+.inputEditName-error {
+	visibility: hidden;
+	display: inline-block;
+	height: 30px;
+	width: 100%;
+	margin: 0;
+	font-size: 0.7rem;
+	font-weight: 400;
+	line-height: 1.1;
+	color: red;
+}
+.inputPhotoLink-error {
+	visibility: hidden;
+	display: inline-block;
+	height: 30px;
+	width: 100%;
+	margin: 0;
+	font-size: 0.7rem;
+	font-weight: 400;
+	line-height: 1.1;
+	color: red;
+}
+.inputEditAbout-error {
+	visibility: hidden;
+	display: inline-block;
+	height: 30px;
+	width: 100%;
+	margin: 0;
+	font-size: 0.7rem;
+	font-weight: 400;
+	line-height: 1.1;
+	color: red;
+}
+.inputAddTitle-error {
+	visibility: hidden;
+	display: inline-block;
+	height: 30px;
+	width: 100%;
+	margin: 0;
+	font-size: 0.7rem;
+	font-weight: 400;
+	line-height: 1.1;
+	color: red;
+}
+.inputAddlink-error {
+	visibility: hidden;
+	display: inline-block;
+	height: 30px;
+	width: 100%;
+	margin: 0;
+	font-size: 0.7rem;
+	font-weight: 400;
+	line-height: 1.1;
+	color: red;
+}
