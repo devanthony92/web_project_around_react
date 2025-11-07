@@ -7,13 +7,19 @@ import NewCard from "../form/NewCard/NewCard";
 import EditAvatar from "../form/EditAvatar/EditAvatar";
 import EditProfile from "../form/EditProfile/EditProfile";
 import Card from "../Card/Card";
+import ImagePopup from "../ImagePopup/ImagePopup";
+import RemoveCard from "../RemoveCard/RemoveCard";
 
 export default function Main() {
 	const [popup, setPopup] = useState(null);
 	const newCardPopup = { title: "Nuevo Lugar", children: <NewCard /> };
 	const user = { title: "Editar Perfil", children: <EditProfile /> };
 	const avatar = { title: "Cambiar foto de perfil", children: <EditAvatar /> };
-	const cards = [
+	const removeCard = {
+		title: "¿Realmente desea eliminar?",
+		children: <RemoveCard confirmDelete={() => handleDelete()} />,
+	};
+	const tarjetas = [
 		{
 			isLiked: false,
 			_id: "5d1f0611d321eb4bdcd707dd",
@@ -31,10 +37,25 @@ export default function Main() {
 			createdAt: "2019-07-05T08:11:58.324Z",
 		},
 	];
+
+	const [cards, setCards] = useState(tarjetas);
+
 	function handleOpenPopup(popup) {
 		setPopup(popup);
 	}
 	function handleClosePopup() {
+		setPopup(null);
+	}
+	function confirm(id) {
+		const test = {
+			title: "¿Realmente desea eliminar?",
+			children: <RemoveCard confirmDelete={() => handleDelete(id)} />,
+			id: id,
+		};
+		setPopup(test);
+	}
+	function handleDelete(id) {
+		setCards((prev) => prev.filter((card) => card._id !== id));
 		setPopup(null);
 	}
 	return (
@@ -54,7 +75,12 @@ export default function Main() {
 					<Card
 						key={card._id}
 						card={card}
-						onOpen={() => handleOpenPopup(imagen)}
+						onOpen={() =>
+							handleOpenPopup({
+								children: <ImagePopup props={card} />,
+							})
+						}
+						onDelete={() => confirm(card._id)}
 					/>
 				))}
 			</ul>

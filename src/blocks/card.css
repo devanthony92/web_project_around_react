@@ -7,6 +7,7 @@
 }
 
 .card__img {
+	cursor: pointer;
 	background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-opaco */
 	width: 280px;
 	min-height: 280px;

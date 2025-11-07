@@ -2,15 +2,6 @@
 	width: 430px;
 	height: 180px;
 }
-.dialog__confirm_title {
-	font-family: Inter;
-	font-weight: 900;
-	font-size: 1.3rem;
-	color: #000;
-	line-height: 1.5;
-	letter-spacing: 0%;
-	margin: 0 0 30px;
-}
 
 .dialog__perfilPhotoEdit {
 	width: 430px;

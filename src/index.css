@@ -1,9 +1,9 @@
 @import url("./assets/vendor/normalize.css");
 @import url("./assets/vendor/fonts.css");
-@import url("./Styles/Page.css");
-@import url("./Styles/Header.css");
-@import url("./Styles/Main.css");
-@import url("./Styles/Elements.css");
-@import url("./Styles/Popup.css");
-@import url("./Styles/card.css");
-@import url("./Styles/Footer.css");
+@import url("./blocks/Page.css");
+@import url("./blocks/Header.css");
+@import url("./blocks/Main.css");
+@import url("./blocks/Elements.css");
+@import url("./blocks/Popup.css");
+@import url("./blocks/card.css");
+@import url("./blocks/Footer.css");
