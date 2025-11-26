@@ -1,6 +1,34 @@
-export default function EditProfile() {
+import { useState, useContext } from "react";
+import { CurrentUserContext } from "../../../context/CurrentUserContext";
+
+export default function EditProfile({ props }) {
+	const handleClosePopup = props;
+	const userContext = useContext(CurrentUserContext);
+	const { currentUser, handleUpdateUser } = userContext;
+	const [userName, setUserName] = useState(currentUser.name);
+	const [userAbout, setUserAbout] = useState(currentUser.about);
+
+	const handleChangeName = (e) => {
+		setUserName(e.target.value);
+	};
+	const handleChangeAbout = (e) => {
+		setUserAbout(e.target.value);
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		handleUpdateUser({ name: userName, about: userAbout });
+		handleClosePopup();
+	};
+
 	return (
-		<form name="edit-form" className="popup__form" id="edit-form" noValidate>
+		<form
+			name="edit-form"
+			className="popup__form"
+			id="edit-form"
+			noValidate
+			onSubmit={handleSubmit}
+		>
 			<label>
 				<input
 					name="edit-name"
@@ -11,6 +39,8 @@ export default function EditProfile() {
 					required
 					minLength="2"
 					maxLength="40"
+					value={userName}
+					onChange={handleChangeName}
 				/>
 				<span id="inputAddTitle-error" className="inputAddTitle-error">
 					Error
@@ -22,22 +52,19 @@ export default function EditProfile() {
 					name="edit-about"
 					id="edit-about"
 					className="popup__input popup__input-about"
-					placeholder="Acerca de mí"
+					placeholder="Descripción"
 					required
 					type="text"
 					minLength="2"
 					maxLength="200"
+					value={userAbout}
+					onChange={handleChangeAbout}
 				/>
 				<span id="inputAddlink-error" className="inputAddlink-error">
 					Error
 				</span>
 			</label>
-			<button
-				disabled
-				type="submit"
-				class="button button_disabled"
-				id="formEditButtonSave"
-			>
+			<button type="submit" className="button " id="formEditButtonSave">
 				Guardar
 			</button>
 		</form>

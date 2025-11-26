@@ -2,14 +2,14 @@ import perfilPhoto from "../../../assets/images/image.jpg";
 import photoEdit from "../../../assets/images/Vector.png";
 
 export default function ProfilePhoto(props) {
-	const { onOpen } = props;
+	const { onOpen, avatar } = props;
 
 	return (
 		<div className="main__profile-photo-container">
 			<img
 				id="avatar"
 				className="main__profile-photo"
-				src={perfilPhoto}
+				src={avatar}
 				alt="profile photo"
 			/>
 

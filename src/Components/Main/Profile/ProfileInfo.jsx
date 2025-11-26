@@ -1,11 +1,7 @@
 import editButton from "../../../assets/images/edit__button.svg";
 
 export default function ProfileInfo(props) {
-	const { onOpen } = props;
-	const user = {
-		name: "Jacques Cousteau",
-		profession: "Explorador",
-	};
+	const { onOpen, user } = props;
 
 	return (
 		<div className="main__profile-info">
@@ -23,7 +19,7 @@ export default function ProfileInfo(props) {
 				</button>
 			</div>
 			<h4 className="main__profile-profesion" id="profileProfesion">
-				{user.profession}
+				{user.about}
 			</h4>
 		</div>
 	);

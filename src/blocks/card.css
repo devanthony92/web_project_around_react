@@ -4,6 +4,8 @@
 	height: 360px;
 	border-radius: 10px;
 	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
 
 .card__img {
@@ -12,27 +14,31 @@
 	width: 280px;
 	min-height: 280px;
 	height: 280px;
+	margin: 0;
+	padding: 0;
 }
 
 .card__description {
+	height: 100%;
 	margin: 0;
+	padding: 0;
 	color: #000;
 	display: grid;
 	grid-template-columns: 6fr 1fr;
 	grid-template-rows: 1fr;
-	justify-items: start;
+	justify-items: space-between;
 	align-items: center;
 }
 
 .card__name {
-	margin: 24px 0 24px 24px;
-	max-width: 220px;
-	font-family: Inter;
+	margin: 0 20px 10px;
+	max-width: 210px;
+	font-family: Delius;
 	font-size: 1.5rem;
-	font-weight: 900;
+	font-weight: 800;
 	line-height: 1.2;
 	text-overflow: ellipsis;
-	white-space: nowrap;
+	white-space: wrap;
 	overflow: hidden;
 }
 
@@ -62,9 +68,12 @@
 }
 
 .card__delete {
+	padding: 0;
+	margin: 0;
 	position: relative;
-	width: 19px;
-	height: 18px;
+	width: 20px;
+	height: 20px;
+	min-height: 20px;
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
@@ -83,6 +92,7 @@
 
 .cards__list {
 	margin: 50px 0 0 0;
+	padding: 0;
 	max-width: 880px;
 	display: grid;
 	grid-template-columns: repeat(3, 280px);

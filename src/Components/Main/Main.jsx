@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import ProfileAddButton from "./Profile/ProfileAddButton";
 import ProfilePhoto from "./Profile/ProfilePhoto";
 import ProfileInfo from "./Profile/ProfileInfo";
@@ -9,36 +9,32 @@ import EditProfile from "../form/EditProfile/EditProfile";
 import Card from "../Card/Card";
 import ImagePopup from "../ImagePopup/ImagePopup";
 import RemoveCard from "../RemoveCard/RemoveCard";
+import api from "../../utils/Api.js";
+import { CurrentUserContext } from "../../context/CurrentUserContext";
 
 export default function Main() {
 	const [popup, setPopup] = useState(null);
-	const newCardPopup = { title: "Nuevo Lugar", children: <NewCard /> };
-	const user = { title: "Editar Perfil", children: <EditProfile /> };
-	const avatar = { title: "Cambiar foto de perfil", children: <EditAvatar /> };
-	const removeCard = {
-		title: "¿Realmente desea eliminar?",
-		children: <RemoveCard confirmDelete={() => handleDelete()} />,
-	};
-	const tarjetas = [
-		{
-			isLiked: false,
-			_id: "5d1f0611d321eb4bdcd707dd",
-			name: "Yosemite Valley",
-			link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-			owner: "5d1f0611d321eb4bdcd707dd",
-			createdAt: "2019-07-05T08:10:57.741Z",
-		},
-		{
-			isLiked: false,
-			_id: "5d1f064ed321eb4bdcd707de",
-			name: "Lake Louise",
-			link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-			owner: "5d1f0611d321eb4bdcd707dd",
-			createdAt: "2019-07-05T08:11:58.324Z",
-		},
-	];
+	const [cards, setCards] = useState([]);
+	const { currentUser } = useContext(CurrentUserContext);
 
-	const [cards, setCards] = useState(tarjetas);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const initialCards = await api.getInitialCards();
+				setCards(initialCards);
+			} catch (error) {
+				console.error("Error consultando datos iniciales: ", error);
+			}
+		};
+		fetchData();
+	}, []);
+
+	const newCardPopup = { title: "Nuevo Lugar", children: <NewCard /> };
+	const user = {
+		title: "Editar Perfil",
+		children: <EditProfile props={handleClosePopup} />,
+	};
+	const avatar = { title: "Cambiar foto de perfil", children: <EditAvatar /> };
 
 	function handleOpenPopup(popup) {
 		setPopup(popup);
@@ -46,23 +42,28 @@ export default function Main() {
 	function handleClosePopup() {
 		setPopup(null);
 	}
-	function confirm(id) {
-		const test = {
+	function confirmDelete(id) {
+		const removeCard = {
 			title: "¿Realmente desea eliminar?",
 			children: <RemoveCard confirmDelete={() => handleDelete(id)} />,
 			id: id,
 		};
-		setPopup(test);
+		setPopup(removeCard);
 	}
-	function handleDelete(id) {
+	async function handleDelete(id) {
 		setCards((prev) => prev.filter((card) => card._id !== id));
 		setPopup(null);
+		await api.deleteCard(id);
 	}
+
 	return (
 		<main className="main">
 			<div className="main__container">
-				<ProfilePhoto onOpen={() => handleOpenPopup(avatar)} />
-				<ProfileInfo onOpen={() => handleOpenPopup(user)} />
+				<ProfilePhoto
+					onOpen={() => handleOpenPopup(avatar)}
+					avatar={currentUser.avatar}
+				/>
+				<ProfileInfo onOpen={() => handleOpenPopup(user)} user={currentUser} />
 				<ProfileAddButton onOpen={() => handleOpenPopup(newCardPopup)} />
 				{popup && (
 					<Popup onClose={handleClosePopup} title={popup.title}>
@@ -80,7 +81,7 @@ export default function Main() {
 								children: <ImagePopup props={card} />,
 							})
 						}
-						onDelete={() => confirm(card._id)}
+						onDelete={() => confirmDelete(card._id)}
 					/>
 				))}
 			</ul>

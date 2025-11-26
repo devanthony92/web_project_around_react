@@ -1,5 +1,4 @@
 export default function RemoveCard(props) {
-	console.log(props);
 	const { title, confirmDelete, id } = props;
 
 	return (
