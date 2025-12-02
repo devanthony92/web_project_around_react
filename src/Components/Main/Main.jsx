@@ -9,7 +9,7 @@ import EditProfile from "../form/EditProfile/EditProfile";
 import Card from "../Card/Card";
 import ImagePopup from "../ImagePopup/ImagePopup";
 import RemoveCard from "../RemoveCard/RemoveCard";
-import { CurrentUserContext } from "../../context/CurrentUserContext";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Main({ cards }) {
 	const [popup, setPopup] = useState(null);
