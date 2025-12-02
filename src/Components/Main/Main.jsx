@@ -9,32 +9,24 @@ import EditProfile from "../form/EditProfile/EditProfile";
 import Card from "../Card/Card";
 import ImagePopup from "../ImagePopup/ImagePopup";
 import RemoveCard from "../RemoveCard/RemoveCard";
-import api from "../../utils/Api.js";
 import { CurrentUserContext } from "../../context/CurrentUserContext";
 
-export default function Main() {
+export default function Main({ cards }) {
 	const [popup, setPopup] = useState(null);
-	const [cards, setCards] = useState([]);
-	const { currentUser } = useContext(CurrentUserContext);
+	const { currentUser, handleDeletePopup } = useContext(CurrentUserContext);
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const initialCards = await api.getInitialCards();
-				setCards(initialCards);
-			} catch (error) {
-				console.error("Error consultando datos iniciales: ", error);
-			}
-		};
-		fetchData();
-	}, []);
-
-	const newCardPopup = { title: "Nuevo Lugar", children: <NewCard /> };
+	const newCardPopup = {
+		title: "Nuevo Lugar",
+		children: <NewCard props={handleClosePopup} />,
+	};
 	const user = {
 		title: "Editar Perfil",
 		children: <EditProfile props={handleClosePopup} />,
 	};
-	const avatar = { title: "Cambiar foto de perfil", children: <EditAvatar /> };
+	const avatar = {
+		title: "Cambiar foto de perfil",
+		children: <EditAvatar props={handleClosePopup} />,
+	};
 
 	function handleOpenPopup(popup) {
 		setPopup(popup);
@@ -42,6 +34,7 @@ export default function Main() {
 	function handleClosePopup() {
 		setPopup(null);
 	}
+
 	function confirmDelete(id) {
 		const removeCard = {
 			title: "¿Realmente desea eliminar?",
@@ -50,12 +43,11 @@ export default function Main() {
 		};
 		setPopup(removeCard);
 	}
-	async function handleDelete(id) {
-		setCards((prev) => prev.filter((card) => card._id !== id));
-		setPopup(null);
-		await api.deleteCard(id);
-	}
 
+	function handleDelete(id) {
+		handleDeletePopup(id);
+		setPopup(null);
+	}
 	return (
 		<main className="main">
 			<div className="main__container">

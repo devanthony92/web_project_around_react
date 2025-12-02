@@ -58,6 +58,7 @@
 
 .main__profile-title {
 	display: flex;
+	height: 50px;
 }
 
 .main__profile-name {

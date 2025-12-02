@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../../utils/Api";
 
 export default function Card(props) {
-	const { onOpen, onDelete, onCardLike } = props;
+	const { onOpen, onDelete } = props;
 	const { name, link, isLiked } = props.card;
 	const [Like, setIsLiked] = useState(isLiked);
 
