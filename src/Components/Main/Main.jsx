@@ -2,13 +2,13 @@ import { useState, useEffect, useContext } from "react";
 import ProfileAddButton from "./Profile/ProfileAddButton";
 import ProfilePhoto from "./Profile/ProfilePhoto";
 import ProfileInfo from "./Profile/ProfileInfo";
-import Popup from "./Popup/Popup";
-import NewCard from "../form/NewCard/NewCard";
-import EditAvatar from "../form/EditAvatar/EditAvatar";
-import EditProfile from "../form/EditProfile/EditProfile";
-import Card from "../Card/Card";
-import ImagePopup from "../ImagePopup/ImagePopup";
-import RemoveCard from "../RemoveCard/RemoveCard";
+import Popup from "./components/Popup/Popup";
+import NewCard from "../../components/Main/components/Popup/NewCard/NewCard";
+import EditAvatar from "../../components/Main/components/Popup/EditAvatar/EditAvatar";
+import EditProfile from "../../components/Main/components/Popup/EditProfile/EditProfile";
+import Card from "../Main/components/Card/Card";
+import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
+import RemoveCard from "./components/Popup/RemoveCard/RemoveCard";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 export default function Main({ cards }) {

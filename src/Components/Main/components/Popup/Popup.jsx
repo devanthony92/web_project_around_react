@@ -1,4 +1,5 @@
-import closeIcon from "../../../assets/images/Close_Icon.png";
+import closeIcon from "../../../../assets/images/Close_Icon.png";
+
 import { useEffect, useRef } from "react";
 
 export default function Popup(props) {

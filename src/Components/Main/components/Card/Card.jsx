@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../../utils/Api";
+import api from "../../../../utils/Api.js";
 
 export default function Card(props) {
 	const { onOpen, onDelete } = props;
